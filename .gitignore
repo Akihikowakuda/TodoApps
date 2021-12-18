@@ -5,6 +5,8 @@
 /todo-client/.pnp
 /todo-client/.pnp.js
 
+/TodoApi/bin
+
 # testing
 /todo-client/coverage
 
