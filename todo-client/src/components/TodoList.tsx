@@ -1,9 +1,12 @@
 import React, { VFC } from "react";
-import { TodoItem } from "./TodoItem";
-import { Todo } from "../types/TodoItems";
+
 import axios from "axios";
 import { Box } from "@chakra-ui/react";
+
+import { Todo } from "../types/TodoItems";
+import { TodoItem } from "./TodoItem";
 import { useMessage } from "../hooks/useMessage";
+
 
 type Props = {
   todos: Todo[];
@@ -14,6 +17,7 @@ export const TodoList: VFC<Props> = (props) => {
   const { todos, setTodos } = props;
   const { showMessage } = useMessage();
   
+  // タスクの完了フラグを変更
   const onChangeComplete = (todo: Todo) => {
     const newTodo: Todo = {
       id: todo.id,
@@ -21,31 +25,26 @@ export const TodoList: VFC<Props> = (props) => {
       isCompleted: !todo.isCompleted
     };
 
-    setTodos((prev) =>
+    setTodos((prev: Todo[]) =>
       prev.map((t) =>
         t.id === todo.id ? { ...todo, isCompleted: !todo.isCompleted } : t
       )
     );
 
     axios
-      .put(`http://127.0.0.1:5000/api/TodoItems/${todo.id}`, newTodo
-        // {
-        //   id: todo.id,
-        //   name: todo.name,
-        //   isCompleted: !todo.isCompleted
-        // }
-      )
-      .then(() => showMessage({ title: "更新しました", status: "success" })
-      ).catch(() => showMessage({ title: "更新に失敗しました", status: "error" }))
+      .put(`https://todoapi-2112.azurewebsites.net/api/TodoItems/${todo.id}`, newTodo)
+      .then(() => showMessage({ title: "更新しました", status: "success" }))
+      .catch(() => showMessage({ title: "更新に失敗しました", status: "error" }))
   };
 
+  // タスクの削除
   const onClickDelete = (todo: Todo) => {
-    setTodos((prev) => prev.filter((t) => t.id !== todo.id));
+    setTodos((prev: Todo[]) => prev.filter((t) => t.id !== todo.id));
 
     axios
-      .delete(`http://127.0.0.1:5000/api/TodoItems/${todo.id}`)
-      .then(() => showMessage({ title: "削除しました", status: "success" })
-      ).catch(() => showMessage({ title: "削除に失敗しました", status: "error" }));
+      .delete(`https://todoapi-2112.azurewebsites.net/api/TodoItems/${todo.id}`)
+      .then(() => showMessage({ title: "削除しました", status: "success" }))
+      .catch(() => showMessage({ title: "削除に失敗しました", status: "error" }));
   };
 
   return (
@@ -54,7 +53,7 @@ export const TodoList: VFC<Props> = (props) => {
         "登録されたTODOはありません。"
       ) : (
         <ul>
-          {todos.map((todo) => (
+          {todos.map((todo: Todo) => (
             <TodoItem
               key={todo.id}
               todo={todo}

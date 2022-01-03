@@ -4,6 +4,7 @@
 /todo-client/node_modules
 /todo-client/.pnp
 /todo-client/.pnp.js
+/todo-client/yarn_bk.lock
 
 /TodoApi/bin
 /TodoApi/obj

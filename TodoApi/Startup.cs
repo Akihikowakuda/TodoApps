@@ -28,7 +28,6 @@ namespace TodoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // add
             services.AddDbContext<TodoContext>(opt =>
                 opt.UseMySql(Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version())));
             services.AddControllersWithViews();
@@ -37,7 +36,6 @@ namespace TodoApi
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                  Console.WriteLine("3000");
                   builder.WithOrigins("http://localhost:3000","https://todoclient-2112.azurewebsites.net");
                     builder.AllowAnyMethod();
                     builder.AllowAnyHeader();
@@ -45,16 +43,7 @@ namespace TodoApi
                 });
             });
 
-            // services.AddAuthentication(
-            //     CertificateAuthenticationDefaults.AuthenticationScheme)
-            //     .AddCertificate();
-            // add
-
             services.AddControllers();
-            // services.AddSwaggerGen(c =>
-            // {
-            //     c.SwaggerDoc("v1", new OpenApiInfo { Title = "TodoApi", Version = "v1" });
-            // });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,14 +52,9 @@ namespace TodoApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                // app.UseSwagger();
-                // app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoApi v1"));
             }
 
-            // app.UseAuthentication();
-            app.UseCors(); // add
-
-            // app.UseHttpsRedirection();
+            app.UseCors();
 
             app.UseRouting();
 

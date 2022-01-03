@@ -1,13 +1,16 @@
 import { VFC } from "react";
-import { Todo } from "../types/TodoItems";
+
 import {
   Checkbox,
   Box,
   Flex,
   Spacer,
-  IconButton,
+  Button,
+  Divider
 } from "@chakra-ui/react";
-import { DeleteIcon } from "@chakra-ui/icons";
+
+import { Todo } from "../types/TodoItems";
+
 
 type Props = {
   todo: Todo;
@@ -19,31 +22,28 @@ export const TodoItem: VFC<Props> = (props) => {
   const { todo, onChangeComplete, onClickDelete } = props;
 
   return (
-    <Box
-      marginBlockStart={2}
-      p={1}
-      my={3}
-      maxW="lg"
-      borderWidth="1px"
-      borderRadius="lg"
-      overflow="hidden"
-    >
-      <Flex>
-        <Checkbox
-          isChecked={todo.isCompleted}
-          onChange={() => onChangeComplete(todo)}
-        >
-          { todo.isCompleted ? <del>{todo.name}</del> : todo.name}
-        </Checkbox>
-        <Spacer />
-        <IconButton
-          mx={1}
-          aria-label="Edit Todo"
-          isRound={true}
-          icon={<DeleteIcon />}
-          onClick={() => onClickDelete(todo)}
-        />
-      </Flex>
-    </Box>
+    <>
+      <Box my="0.5em">
+        <Flex>
+          <Checkbox
+            isChecked={todo.isCompleted}
+            onChange={() => onChangeComplete(todo)}
+          >
+            { todo.isCompleted ? <del>{todo.name}</del> : todo.name}
+          </Checkbox>
+          <Spacer />
+          <Button
+              h="2em"
+              bg="#E53E3E"
+              color="#FFFFFF"
+              shadow="md"
+              onClick={() => onClickDelete(todo)}
+          >
+              削除
+          </Button>
+        </Flex>
+      </Box>
+      <Divider />
+    </>
   );
 };
