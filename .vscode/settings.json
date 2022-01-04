@@ -1,0 +1,8 @@
+{
+  "appService.preDeployTask": "publish-release",
+  "appService.deploySubpath": "TodoApi/bin/Release/net5.0/publish",
+  "appService.zipIgnorePattern": [
+    "node_modules{,/**}",
+    ".vscode{,/**}"
+  ]
+}

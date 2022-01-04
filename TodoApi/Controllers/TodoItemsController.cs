@@ -28,6 +28,7 @@ namespace TodoApi.Controllers
         }
 
         // GET: api/TodoItems/5
+        [Route("/")]
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
         {

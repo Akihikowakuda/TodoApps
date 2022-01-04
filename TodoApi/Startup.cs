@@ -36,7 +36,7 @@ namespace TodoApi
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                  builder.WithOrigins("http://localhost:3000","https://todoclient-2112.azurewebsites.net");
+                  builder.WithOrigins("http://localhost:3000");
                     builder.AllowAnyMethod();
                     builder.AllowAnyHeader();
                     builder.AllowCredentials();
