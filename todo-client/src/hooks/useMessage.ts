@@ -1,5 +1,7 @@
 import { useCallback } from "react";
+
 import { useToast } from "@chakra-ui/react";
+
 
 type Props = {
   title: string;
@@ -9,7 +11,7 @@ type Props = {
 export const useMessage = () => {
   const toast = useToast();
 
-  const showMessage = useCallback((props: Props) => {
+  const showMessage = useCallback((props) => {
     const { title, status } = props;
     toast({
       title,

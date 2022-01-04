@@ -27,6 +27,7 @@ export const InputTodo: VFC<Props> = (props) => {
     setInputTodo(e.target.value);
   };
 
+  // タスク登録
   const onClickSubmit = () => {
     if (inputTodo === "") {
       showMessage({ title: "タスクを入力してください。", status: "error" })
